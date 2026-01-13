@@ -1,54 +1,49 @@
-# React + TypeScript + Vite
+# SNS App (React + TypeScript + Vite)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Currently, two official plugins are available:
+이 프로젝트는 Docker 컨테이너 환경에서 `sns-app`을 실행하고,  
+컨테이너 내부에서 `json-server`를 사용해 Mock API 서버를 구동하는 것을 목표로 한다.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## 기술 스택 (Tech Stack)
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### Frontend
+- **React**
+- **TypeScript**
+- **Vite**
+- **Tailwind CSS**  
+  유틸리티 기반 CSS 프레임워크
+- **Zustand**  
+  전역 상태 관리 라이브러리
+- **TanStack React Query**  
+  서버 상태 관리 및 데이터 패칭
+- **shadcn/ui**  
+  Tailwind 기반의 재사용 가능한 UI 컴포넌트
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+### Mock Server
+- **json-server**  
+  JSON 파일 기반의 Mock REST API 서버
+
+### Infrastructure
+- **Docker**
+- **Docker Compose**
+
+---
+
+## 1. Docker 컨테이너 실행
+
+```bash
+docker compose up -d sns-app
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 2. json-server로 Mock API 서버 실행
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+```bash
+# 실행 중인 컨테이너 내부 접속
+docker exec -it sns-app sh
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+# mock api 서버 실행
+npx json-server server/db.json --host 0.0.0.0 --port 5200
 ```
+
