@@ -4,6 +4,7 @@ import CounterPage from "@/pages/counter-page.tsx";
 import IndexPage from "@/pages/index-page.tsx";
 import SingInPage from "@/pages/sign-in-page.tsx";
 import SingUpPage from "@/pages/sign-up-page.tsx";
+import TodoListPage from "@/pages/todo-list-page.tsx";
 
 function AuthLayout() {
   return (
@@ -19,6 +20,7 @@ function App() {
     <Routes>
       <Route path={"/"} element={<IndexPage />}></Route>
       <Route path={"/counter"} element={<CounterPage />}></Route>
+      <Route path={"/todolist"} element={<TodoListPage />}></Route>
 
       <Route element={<AuthLayout />}>
         <Route path={"/sign-in"} element={<SingInPage />}></Route>
