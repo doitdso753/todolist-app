@@ -14,13 +14,22 @@ const useTodosStore = create(
     actions: {
       createTodo: (content: string) => {
         set(state => {
-          state.todos.push({ id: new Date().getTime(), content });
+          state.todos.push({
+            id: String(new Date().getTime()),
+            content
+          });
         })
 
       },
-      deleteTodo: (targetId: number) => {
+      deleteTodo: (targetId: string) => {
         set(state => {
-          state.todos.splice(state.todos.indexOf(targetId), 1);
+          const index = state.todos.findIndex(
+            todo => todo?.id === targetId
+          );
+
+          if (index !== -1) {
+            state.todos.splice(index, 1);
+          }
         })
       },
     }
