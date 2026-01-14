@@ -12,6 +12,7 @@ services:
       - HOST=0.0.0.0 # 외부 접근 허용
     ports:
       - "5173:5173"
+      - "5200:5200"
     command: ["npm", "run", "dev"]
 
 volumes:
