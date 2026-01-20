@@ -9,11 +9,15 @@ export function useDeleteTodoMutation() {
   return useMutation({
     mutationFn: deleteTodo,
     onSuccess: (deletedTodo) => {
-      queryClient.setQueryData<Todo[]>(
+      queryClient.removeQueries({
+        queryKey: QUERY_KEYS.todo.detail(deletedTodo.id),
+      });
+
+      queryClient.setQueryData<string[]>(
         QUERY_KEYS.todo.list,
-        (prevTodos) => {
-          if (!prevTodos) return [];
-          return prevTodos.filter((prevTodo) => prevTodo.id !== deletedTodo.id);
+        (prevTodoIds) => {
+          if (!prevTodoIds) return [];
+          return prevTodoIds.filter((prevTodoId) => prevTodoId !== deletedTodo.id);
         }
       );
     },
