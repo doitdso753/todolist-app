@@ -1,7 +1,7 @@
-# SNS App (React + TypeScript + Vite)
+# TODO List App (React + TypeScript + Vite)
 
 
-이 프로젝트는 Docker 컨테이너 환경에서 `sns-app`을 실행하고,  
+이 프로젝트는 Docker 컨테이너 환경에서 `todolist-app`을 실행하고,  
 컨테이너 내부에서 `json-server`를 사용해 Mock API 서버를 구동하는 것을 목표로 한다.
 
 ---
@@ -34,14 +34,14 @@
 ## 1. Docker 컨테이너 실행
 
 ```bash
-docker compose up -d sns-app
+docker compose up -d todolist-app
 ```
 
 ## 2. json-server로 Mock API 서버 실행
 
 ```bash
 # 실행 중인 컨테이너 내부 접속
-docker exec -it sns-app sh
+docker exec -it todolist-app sh
 
 # mock api 서버 실행
 npx json-server server/db.json --host 0.0.0.0 --port 5200

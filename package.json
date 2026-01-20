@@ -1,12 +1,12 @@
 {
-  "name": "sns-app",
+  "name": "todolist-app",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "lint": "eslint sns-app",
+    "lint": "eslint todolist-app",
     "preview": "vite preview"
   },
   "dependencies": {

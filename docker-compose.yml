@@ -1,6 +1,6 @@
 services:
-  sns-app:
-    container_name: sns-app
+  todolist-app:
+    container_name: todolist-app
     build:
       context: ./
       dockerfile: Dockerfile
